@@ -21,5 +21,26 @@ Guest: 60
 cecsu : x : 1201
 Cecsu: 1201
 cecsg : x: 1202
-Cecsg: 1202
+Cecsg: 1202						
 
+8) root : $1$WWMLg : DC$t52oupONJSWqUrFiGpEH3 : 18648 : 0 : : : : :
+Local accounts with encrypted passwords: 1 - root
+
+9) root : $1$WWMLg : DC$t52oupONJSWqUrFiGpEH3 : 18648 : 0 : : : : :
+January 8, 1970 from January 28, 2021
+
+10) chage -l root 
+
+11) The only reason why making the shadow file world-readable is a bad decision because it will give access and a lot of password information to users who VIM into the file. 
+
+12) alias lf = 'ls -aCF'
+alias l = 'ls -al'
+alias ll = 'ls -al'
+alias term = 'set noglob ; eval 'tset -rsQ \!* ; set glob'
+alias bye = 'logout'
+
+5 aliases 
+
+13) export PATH = '~/bin : /usr/bin : /bin : /usr/cecs/bin : /sbin : /usr/sbin : /usr/bin/X11 ; /usr/local/bin : '
+
+8 directories

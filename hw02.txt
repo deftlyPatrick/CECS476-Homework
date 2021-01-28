@@ -1,0 +1,25 @@
+1) volper : x : 100 : 300 : Dennis Volper : /net/aardvark/u1/volper : /bin/csh
+UID: 300
+
+2) volper : x : 300:
+Group Number: 300
+
+3) volper : x : 100 : 300 : Dennis Volper : /net/aardvark/u1/volper : /bin/csh
+Home Directory: /net/aardvark/u1/volper
+
+4) volper : x : 100 : 300 : Dennis Volper : /net/aardvark/u1/volper : /bin/csh
+Login Shell: /bin/csh
+
+5) volper : x : 100 : 300 : Dennis Volper : /net/aardvark/u1/volper : /bin/csh
+Base group: Dennis Volper
+
+6) vjd : x : 1408 : 1002 : Volper general lab account : /net/cheetah/u3/vjd : /bin/bash
+The other three additional groups is: Volper, general, lab
+
+7) guest : x : 60
+Guest: 60
+cecsu : x : 1201
+Cecsu: 1201
+cecsg : x: 1202
+Cecsg: 1202
+

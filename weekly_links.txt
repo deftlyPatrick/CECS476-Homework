@@ -4,19 +4,24 @@ week 0 links:
 http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/linux_intro.pdf
 http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment00.pdf
 
-week 1 links:
 http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/linux_intro.pdf
 http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/linux_use.pdf
 http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment01.pdf
 http://cheetah.cecs.csulb.edu/CECS274/lecture_pdfs/unix05.pdf
 
-week 2 links: 
+week 1 links: 
 http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment02.pdf
 http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/user_administration.pdf
 http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/file_organization.pdf
 
-week 3 links:
 http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment03.pdf
 http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/virtual_machines.pdf
 http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/cloud_intro.pdf
+
+week 2 links:
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment04.pdf
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/user_administration.pdf
+
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment05.pdf
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/shell_programming.pdf
 

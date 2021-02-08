@@ -44,3 +44,4 @@ alias bye = 'logout'
 13) export PATH = '~/bin : /usr/bin : /bin : /usr/cecs/bin : /sbin : /usr/sbin : /usr/bin/X11 ; /usr/local/bin : '
 
 8 directories
+

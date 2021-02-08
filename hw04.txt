@@ -1,0 +1,49 @@
+Patrick Wong
+csa476p2
+
+Commands:
+ssh csa476p2@54.234.151.78
+ssh 10.0.16.16
+cd /etc
+vim passwd
+---------------------------------------------
+bob:x:13101:2500:OK:/home/bob:/bin/bash
+sue:x:13102:2501:OK:/home/sue:/bin/bash
+---------------------------------------------
+vim shadow
+---------------------------------------------
+bob:$6$W3fGM8NZ$VTfihoB5o8kYMiV7TNPHsJ37lcqHZ3GZPPf.v56RLX4O/Zj8YmctZ69gK8p9TIc.qlQ2w21fPikfcYuavo7zH0:18663:0:::::
+sue:$6$ZAE6eOyp$PtGqMG.KFq4aV5zeuYBNYdx/MRMJ.walkemO7YUqLpd342Z42DyTpi/LfPoRh289bz0NYoZUK4gG/2hp93mq9.:18663::::::
+---------------------------------------------
+cd 
+cd /home
+mkdir ~bob
+cd bob
+vim .bash_profile
+vim .login
+vim demo
+cd ..
+mkdir ~sue
+vim .bash_profile
+vim .login
+vim demo
+cd ..
+chmod -R 755 ~bob
+chmod -R 755 ~sue
+exit 
+su bob
+-------------
+enter password
+exit
+-------------
+su sue
+-------------
+enter password
+exit
+-------------
+
+Transfering ~djv files from cheetah -> gateway -> private ip
+scp .bash_profile csa476p2@54.234.151.78:/home/csa476p2
+scp .login csa476p2@54.234.151.78:/home/csa476p2
+scp .bash_profile csa476p2@10.0.16.16:/home/bob
+scp .login csa476p2@10.0.16.16:/home/bob

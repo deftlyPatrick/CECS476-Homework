@@ -1,0 +1,60 @@
+Patrick Wong
+Login Name: csa476p2
+
+1) The number of entries in the password file
+commands: 
+/etc/passwd
+wc -l /etc/passwd
+---------------
+79
+
+2) The config file that controls the inetd system
+commands:
+locate inetd
+cd /etc
+---------------
+/etc/inetd.conf
+
+3) The program that tells disk space usage on Linux system
+commands:
+df -h
+
+4) /etc/X11
+commands:
+cd /etc/X11
+ls 
+---------------
+xorg.conf-vesa
+xorg.conf.d
+
+5) /usr/lib64
+commands:
+find /usr/lib64 -name "*Xfontcache*"
+------------------------------------nnn
+libXfontcache.la
+libXfontcache.so
+libXfontcache.so.1.0.0
+libXfontcache.so.1
+
+6) /proc/cpuinfo
+commands:
+watch -n.1 "cat /proc/cpuinfo | grep \"^[c]pu MHz\""
+
+7) Last 3 log files changed
+commands: 
+ls -lt
+------------------------------------
+-rw-r--r-- 1 csa476p2 40 1401 Jan 28 21:53 hw02.txt
+-rw-r--r-- 1 csa476p2 40 12 Jan 27 22:18 hw00.txt
+-rw-r--r-- 1 csa476p2 40 12 Jan 27 22:17 hw00.txt
+
+8) Last 3 lines in messages log file
+commands:
+locate messages
+vim /var/log/messages
+--------------------
+Jan 12 11:50:26 lab38 kernel: [    0.000000] BIOS-e820: [mem 0x000000007d645000-0x000000007d687fff] ACPI NVS
+Jan 12 11:50:26 lab38 kernel: [    0.000000] BIOS-e820: [mem 0x000000007d688000-0x000000007d7fffff] usable
+Jan 12 11:50:26 lab38 kernel: [    0.000000] BIOS-e820: [mem 0x00000000fec00000-0x00000000fec00fff] reserved----------------
+
+

@@ -1,0 +1,51 @@
+Patrick Wong
+Login Name: csa476p2
+
+1) VPC = Virtual Private Cloud
+
+2) VPC = US East (N. Virginia) - IPv4 CIDR: 172.31.0.0/16
+
+3) private ip addresses = 10.0.8.240
+
+public ip addresses = 54.234.151.78
+
+4)  gateway's security group is gateway
+
+5) Inbound ports:
+
+Port range - Protocol - Source - Security groups
+all - all - 10.0.0.0/8 - gateway
+22 - TCP - 0.0.0.0/0 - gateway
+-1 - ICMP - 0.0.0.0/0 - gateway
+
+6) Instance ID: i-0afce935de653d48d
+
+csa476p2-server
+
+7) Private IP Address:
+10.0.16.16
+10.0.200.70
+
+8) Unique instance ID: 
+i-09b6c7a8679dab21b
+
+9) Block devices:
+
+Volume ID - Device Name
+vol-0be7e811f051d0e2a - /dev/xvda
+vol-0f61997d406a691d9 - /dev/sdb
+
+10) Availablity Zone: us-east-1a
+
+11) Geographic Region: N Virginia
+
+12) Instance state: stopped
+
+13) Version: GNU/Linux
+
+14) Command: wc -l /etc/passwd
+67 users on gateway
+
+15) ssh: connect to host 10.0.16.16 port 22: Connection timed out
+This is happening when the instance is not turned on. 
+

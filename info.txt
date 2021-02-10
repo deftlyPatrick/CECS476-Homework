@@ -1,0 +1,12 @@
+ssh -p 2020 csa476p2@cheetah.cecs.csulb.edu
+
+~grader/submit 00
+
+
+ssh csa476p2@54.234.151.78
+ssh 10.0.16.16
+
+
+            owner group xbit
+-rw-r--r-- 1 bob cecsu 26 Feb 5 06:56 demo
+-rwxrwxr-x 1 bob cecsu 59 Feb 8 04:07 test.sh

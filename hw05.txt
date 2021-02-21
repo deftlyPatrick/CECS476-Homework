@@ -1,0 +1,98 @@
+Patrick Wong
+Login Name: csa476p2
+
+To give files executablity 
+chmod +x
+
+1) 
+cpeek.sh
+----------------------------------------
+date >> bashlog
+
+ps aux | grep biod >> bashlog
+----------------------------------------
+
+bashlog
+----------------------------------------
+Mon Feb  8 06:30:59 UTC 2021
+bob       5387  0.0  0.2 119420   948 pts/0    S+   06:30   0:00 grep biod
+Mon Feb  8 06:34:50 UTC 2021
+bob       5396  0.0  0.2 119420   948 pts/0    S+   06:34   0:00 grep biod
+Mon Feb  8 06:34:51 UTC 2021
+bob       5400  0.0  0.2 119420   956 pts/0    S+   06:34   0:00 grep biod
+Mon Feb  8 06:34:51 UTC 2021
+bob       5404  0.0  0.2 119420   952 pts/0    S+   06:34   0:00 grep biod
+Mon Feb  8 06:34:52 UTC 2021
+bob       5408  0.0  0.2 119420   952 pts/0    S+   06:34   0:00 grep biod
+----------------------------------------
+
+2)
+clook.sh
+----------------------------------------
+#!/bin/bash
+dir="$1"
+
+if [ -d "$dir" ]; then
+        echo "Directory $dir exists."
+        for f in *; do
+                if [ -f "$f" ] && [ -x "$f" ]; then
+                                echo "$f - executable"
+                        else
+                                echo "$f - not executable"
+                fi
+        done
+else
+        echo "Sorry"
+fi
+
+
+3)
+
+lsblk
+sda
+sdb
+sdc
+
+4) df -h
+
+365gb
+
+5) df -T
+
+/dev/root - ext4
+devtmpfs - devtmpfs
+tmpfs - tmpfs
+cgroup_root - tmpfs
+/dev/sdb1 - ext4
+/dev/sdc1 - ext4
+cgmfs - tmpfs
+aardvark.cecs.csulb.edu:/u1 - nfs 
+
+6) du -h
+8.0K    ./.ssh
+148K    .
+
+7)
+
+The MOUNT POINT is the directory on the root file while allow access to the content of everything where it would also have OPTIONS to move the device to other areas.
+
+8) 
+
+file system version = version 2
+data block size = "bsize: 4096"
+data blocks = "blocks: 2096635"
+
+9)
+
+Disk /dev/nvme1n1: 2 GiB, 2147483648 bytes, 4194304 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/nvme0n1: 8 GiB, 8589934592 bytes, 16777216 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: 83181C97-6D5E-43C9-9EDE-E2F50EAD5338

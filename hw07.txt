@@ -1,0 +1,297 @@
+Patrick Wong
+csa476p2
+
+Troubleshooting Error (reference):
+[root@ip-10-0-16-16 ~]# cd /newdisk
+[root@ip-10-0-16-16 newdisk]# ls
+lost+found
+[root@ip-10-0-16-16 newdisk]# mount -a
+[root@ip-10-0-16-16 newdisk]# vim /etc/fstab
+[root@ip-10-0-16-16 newdisk]# mount -a
+[root@ip-10-0-16-16 newdisk]# umount /dev/sdb2
+umount: /newdisk: target is busy.
+[root@ip-10-0-16-16 newdisk]# cd ..
+[root@ip-10-0-16-16 /]# umount /dev/sdb2
+[root@ip-10-0-16-16 /]# mount /dev/sdb2
+[root@ip-10-0-16-16 /]# mount -a
+[root@ip-10-0-16-16 /]# swapoff -a
+[root@ip-10-0-16-16 /]# vim /etc/fstab
+[root@ip-10-0-16-16 /]# mount -a
+[root@ip-10-0-16-16 /]# swapon -a
+[root@ip-10-0-16-16 /]# vim /etc/fstab
+[root@ip-10-0-16-16 /]# swapon -a
+[root@ip-10-0-16-16 /]# vim /etc/fstab
+[root@ip-10-0-16-16 /]# swapon -a
+[root@ip-10-0-16-16 /]# reboot
+
+
+1) 
+
+14 days
+
+csa476p2@cheetah:~$ last reboot
+reboot   system boot  4.4.14           Tue Feb  4 13:39 - 14:26 (380+00:47)
+reboot   system boot  4.4.14           Tue Jan 21 13:48 - 14:26 (394+00:38)
+reboot   system boot  4.4.14           Sun Jan  5 16:00 - 14:26 (409+22:26)
+reboot   system boot  4.4.14           Tue Feb 12 14:59 - 14:26 (736+23:27)
+reboot   system boot  4.4.14           Sun Jan 20 18:59 - 14:26 (759+19:27)
+reboot   system boot  4.4.14           Sun Jan 20 18:48 - 18:58  (00:09)
+reboot   system boot  4.4.14           Sun Jan 20 18:41 - 18:48  (00:06)
+reboot   system boot  4.4.14           Sun Jan 20 18:36 - 18:41  (00:04)
+reboot   system boot  4.4.14           Sun Jan 20 18:33 - 18:34  (00:00)
+reboot   system boot  4.4.14           Sun Jan 20 18:23 - 18:24  (00:00)
+reboot   system boot  4.4.14           Sun Jan 20 18:18 - 18:22  (00:04)
+reboot   system boot  4.4.14           Sat Jan 12 19:04 - 19:11  (00:07)
+reboot   system boot  4.4.14           Sat Jan 12 19:01 - 19:03  (00:02)
+reboot   system boot  4.4.14           Sat Jan 12 11:59 - 19:01  (07:02)
+reboot   system boot  4.4.14           Sat Jan 12 11:50 - 11:58  (00:07)
+
+wtmp begins Sat Jan 12 11:50:26 2019
+
+-------------------------------------------------------------------------------
+
+2)
+
+9 users
+
+csa476p2@cheetah:~$ who
+csa476k1 pts/0        2021-02-18 12:36 (45.50.70.243)
+csa476j2 pts/1        2021-02-18 13:21 (68.74.136.100)
+csa476p1 pts/2        2021-02-18 11:01 (107.217.201.4)
+csa476p1 pts/3        2021-02-18 11:03 (107.217.201.4)
+csa476f1 pts/4        2021-02-18 12:10 (174.81.17.173)
+csa476p2 pts/5        2021-02-18 14:23 (104.129.192.109)
+csa476f1 pts/7        2021-02-18 13:08 (174.81.17.173)
+csa476p1 pts/8        2021-02-18 13:34 (107.217.201.4)
+csa476j2 pts/9        2021-02-18 13:36 (68.74.136.100)
+
+-------------------------------------------------------------------------------
+
+3)
+
+Average load of 1.00 
+
+csa476p2@cheetah:~$ uptime
+14:29:09 up 379 days, 22:15,  9 users,  load average: 1.00, 1.00, 1.00
+
+-------------------------------------------------------------------------------
+
+4)
+
+0.2% CPU usage
+
+[csa476p2@gateway ~]$ top
+top - 22:57:49 up 18:57,  6 users,  load average: 0.00, 0.00, 0.00
+Tasks: 112 total,   1 running,  70 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.2 us,  0.2 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem :  3990152 total,  3169808 free,   134056 used,   686288 buff/cache
+KiB Swap:        0 total,        0 free,        0 used.  3641612 avail Mem
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 2484 root      20   0 1244864  38676  35884 S   0.3  1.0   0:14.65 rsyslogd
+    1 root      20   0   43596   5324   3896 S   0.0  0.1   0:03.46 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:00.02 kthreadd
+    4 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 kworker/0:0H
+    6 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 mm_percpu_wq
+    7 root      20   0       0      0      0 S   0.0  0.0   0:00.40 ksoftirqd/0
+    8 root      20   0       0      0      0 I   0.0  0.0   0:03.91 rcu_sched
+    9 root      20   0       0      0      0 I   0.0  0.0   0:00.00 rcu_bh
+   10 root      rt   0       0      0      0 S   0.0  0.0   0:00.01 migration/0
+   11 root      rt   0       0      0      0 S   0.0  0.0   0:00.16 watchdog/0
+   12 root      20   0       0      0      0 S   0.0  0.0   0:00.00 cpuhp/0
+   13 root      20   0       0      0      0 S   0.0  0.0   0:00.00 cpuhp/1
+   14 root      rt   0       0      0      0 S   0.0  0.0   0:00.17 watchdog/1
+   15 root      rt   0       0      0      0 S   0.0  0.0   0:00.23 migration/1
+   16 root      20   0       0      0      0 S   0.0  0.0   0:00.31 ksoftirqd/1
+   18 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 kworker/1:0H
+   20 root      20   0       0      0      0 S   0.0  0.0   0:00.00 kdevtmpfs
+   21 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 netns
+  141 root      20   0       0      0      0 S   0.0  0.0   0:00.01 khungtaskd
+  184 root      20   0       0      0      0 S   0.0  0.0   0:00.00 oom_reaper
+  185 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 writeback
+  187 root      20   0       0      0      0 S   0.0  0.0   0:00.00 kcompactd0
+  188 root      25   5       0      0      0 S   0.0  0.0   0:00.00 ksmd
+
+-------------------------------------------------------------------------------
+
+5)
+
+0.3% of memory being used from 4)
+
+-------------------------------------------------------------------------------
+
+6)
+
+[csa476p2@gateway ~]$ ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -10
+  PID  PPID CMD                         %MEM %CPU
+ 1433     1 /usr/lib/systemd/systemd-jo  2.0  0.0
+ 2484     1 /usr/sbin/rsyslogd -n        0.9  0.0
+ 2645  2481 /usr/bin/ssm-agent-worker    0.7  0.0
+
+-------------------------------------------------------------------------------
+
+7)
+
+3 processes
+
+[csa476p2@ip-10-0-16-16 ~]$ ps aux | grep -i agetty
+root      2686  0.0  0.4 120936  2288 ttyS0    Ss+  Feb05   0:00 /sbin/agetty --keep-baud 115200,38400,9600 ttyS0 vt220
+root      2687  0.0  0.3 121288  1648 tty1     Ss+  Feb05   0:00 /sbin/agetty --noclear tty1 linux
+csa476p2  8546  0.0  0.2 119420   988 pts/0    S+   23:15   0:00 grep --color=auto -i agetty
+
+-------------------------------------------------------------------------------
+
+8)	
+
+12 commands
+
+[csa476p2@ip-10-0-16-16 ~]$ compgen -c | grep -i rpc
+rpcgen
+rpcbind
+rpcinfo
+grpck
+grpconv
+rpcdebug
+rpc.rquotad
+rpc.statd
+rpc.gssd
+rpc.idmapd
+rpc.mountd
+rpc.nfsdx
+
+-------------------------------------------------------------------------------
+
+9)
+
+1.8 + 1.8 + 1.7 + 1.6 + 0.9 + 0.9 + 0.9 + 0.1 = 9.7%
+
+[csa476p2@ip-10-0-16-16 ~]$ ps -eo pid,ppid,cmd,%mem --sort=-%mem | grep -i sshd
+ 8766  2762 sshd: csa476p2 [priv]        1.8
+ 9126  2762 sshd: csa476p2 [priv]        1.8
+ 8519  2762 sshd: csa476p2 [priv]        1.7
+ 2762     1 /usr/sbin/sshd -D            1.6
+ 8768  8766 sshd: csa476p2@pts/1         0.9
+ 9129  9126 sshd: csa476p2@pts/2         0.9
+ 8521  8519 sshd: csa476p2@pts/0         0.9
+ 9161  9130 grep --color=auto -i sshd    0.1
+
+-------------------------------------------------------------------------------
+
+10)
+
+It is swap partition - on /dev/sda1 
+
+csa476p2@cheetah:~$ swapon -s
+Filename                                Type            Size    Used    Priority
+/dev/sda1                               partition       97675228        15892   -1
+
+-------------------------------------------------------------------------------
+
+11) 
+
+a)
+
+139 megabyte of memory available
+
+[csa476p2@ip-10-0-16-16 ~]$ free -h
+              total        used        free      shared  buff/cache   available
+Mem:           461M        112M        139M        492K        209M        336M
+Swap:            0B          0B          0B
+
+---------------------------------------
+
+b)
+
+112 megabyte of memory in use
+
+[csa476p2@ip-10-0-16-16 ~]$ free -h
+              total        used        free      shared  buff/cache   available
+Mem:           461M        112M        139M        492K        209M        336M
+Swap:            0B          0B          0B
+
+---------------------------------------
+
+c)
+
+209 megabyte of memory used for buffers
+
+[csa476p2@ip-10-0-16-16 ~]$ free -h
+              total        used        free      shared  buff/cache   available
+Mem:           461M        112M        139M        492K        209M        336M
+Swap:            0B          0B          0B
+
+---------------------------------------
+
+d)
+
+0 bytes of swap space available
+
+[csa476p2@ip-10-0-16-16 ~]$ free -h
+              total        used        free      shared  buff/cache   available
+Mem:           461M        112M        139M        492K        209M        336M
+Swap:            0B          0B          0B
+
+---------------------------------------
+
+e)
+
+0 bytes of swap space in use
+
+[csa476p2@ip-10-0-16-16 ~]$ free -h
+              total        used        free      shared  buff/cache   available
+Mem:           461M        112M        139M        492K        209M        336M
+Swap:            0B          0B          0B
+
+--------------------------------------------------------------------------------
+
+12)
+
+[root@ip-10-0-16-16 ~]# dd if=/dev/zero of=/myswap bs=4096 count=4096
+4096+0 records in
+4096+0 records out
+16777216 bytes (17 MB) copied, 0.0161459 s, 1.0 GB/s
+
+[root@ip-10-0-16-16 ~]# mkswap /myswap
+mkswap: /myswap: insecure permissions 0644, 0600 suggested.
+Setting up swapspace version 1, size = 16 MiB (16773120 bytes)
+no label, UUID=ff58224d-b895-4acd-a96b-2dc74f3f70e4
+
+[root@ip-10-0-16-16 ~]# swapon /myswap
+swapon: /myswap: insecure permissions 0644, 0600 suggested.
+
+--------------------------------------------------------------------------------
+
+13)
+
+[csa476p2@ip-10-0-16-16 ~]$ free -h
+              total        used        free      shared  buff/cache   available
+Mem:           461M        112M        121M        492K        226M        336M
+Swap:           15M          0B         15M
+
+
+[root@ip-10-0-16-16 ~]# swapoff /myswap
+
+[root@ip-10-0-16-16 ~]# rm /myswap
+rm: remove regular file ‘/myswap’? y
+
+----------
+New /etc/fstab
+
+UUID=55da5202-8008-43e8-8ade-2572319d9185     /           xfs    defaults,noatime  1   1
+/dev/sdb2 /newdisk ext2 defaults 1 1
+#/dev/sdc2 /mount/diskthree ext2 defaults 1 1
+
+/dev/sdb1 none swap sw 0 0
+/myswap none swap sw 0 0
+
+
+--------------------------------------------------------------------------------
+
+14)
+
+There is 219 megabytes of swap space available
+
+[csa476p2@ip-10-0-16-16 ~]$ free -h
+              total        used        free      shared  buff/cache   available
+Mem:           461M        101M        128M        432K        230M        347M
+Swap:          219M          0B        219M

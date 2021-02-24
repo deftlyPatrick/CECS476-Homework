@@ -22,6 +22,24 @@ week 2 links:
 http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment04.pdf
 http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/user_administration.pdf
 
+week 3 links:
 http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment05.pdf
 http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/shell_programming.pdf
 
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/filesystems.pdf
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment06.pdf
+
+week 4 links:
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment07.pdf
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/processes.pdf
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/virtual_memory.pdf
+
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/init.pdf
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/cron.pdf
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment08.pdf
+
+week 5 links:
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/tar.pdf
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/encryption.pdf
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/terminals.pdf
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment09.pdf

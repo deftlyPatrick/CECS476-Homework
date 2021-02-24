@@ -1,0 +1,92 @@
+Patrick Wong
+Login Name: csa476p2
+
+1)
+
+cd /etc/inittab
+
+Uncomment - 
+
+s1:12345:respawn/sbin/agetty -L ttyS0 9600 vt100
+
+2)
+
+5 seconds - it waits 5 seconds before forcibly terminating processes via using the SIGKILL signal
+
+3)
+
+cd /etc/inittab
+
+# Default runlevel. (Do not set to 0 or 6)
+id:3:initdefault:
+
+4)
+
+-------------------------------------------------------------
+[root@ip-10-0-16-16 system]# systemctl start sample.service
+-------------------------------------------------------------
+[root@ip-10-0-16-16 system]# curl localhost:8000
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"><html>
+<title>Directory listing for /</title>
+<body>
+<h2>Directory listing for /</h2>
+<hr>
+<ul>
+<li><a href=".autorelabel">.autorelabel</a>
+<li><a href="bin/">bin@</a>
+<li><a href="boot/">boot/</a>
+<li><a href="dev/">dev/</a>
+<li><a href="etc/">etc/</a>
+<li><a href="home/">home/</a>
+<li><a href="lib/">lib@</a>
+<li><a href="lib64/">lib64@</a>
+<li><a href="local/">local/</a>
+<li><a href="media/">media/</a>
+<li><a href="mnt/">mnt/</a>
+<li><a href="myswap">myswap</a>
+<li><a href="net/">net/</a>
+<li><a href="newdisk/">newdisk/</a>
+<li><a href="opt/">opt/</a>
+<li><a href="proc/">proc/</a>
+<li><a href="root/">root/</a>
+<li><a href="run/">run/</a>
+<li><a href="sbin/">sbin@</a>
+<li><a href="srv/">srv/</a>
+<li><a href="sys/">sys/</a>
+<li><a href="tmp/">tmp/</a>
+<li><a href="usr/">usr/</a>
+<li><a href="var/">var/</a>
+</ul>
+<hr>
+</body>
+</html>
+-------------------------------------------------------------
+[root@ip-10-0-16-16 system]# systemctl stop sample.service
+-------------------------------------------------------------
+[root@ip-10-0-16-16 system]# systemctl disable sample.service
+
+5)
+-------------------------------------------------------------
+[root@ip-10-0-16-16 system]# systemctl get-default
+graphical.target
+-------------------------------------------------------------
+
+6)
+-------------------------------------------------------------
+[bob@ip-10-0-16-16 ~]$ crontab -e
+-------------------------------------------------------------
+* * * * * ls > lsFile
+-------------------------------------------------------------
+[bob@ip-10-0-16-16 ~]$ cat lsFile
+bashlog
+clook.sh
+cpeek.sh
+demo
+lsFile
+test.sh
+------------------------------------------------------------
+[bob@ip-10-0-16-16 ~]$ crontab -r
+
+7)
+-------------------------------------------------------------
+0 3 * * * /sbin/logrotate

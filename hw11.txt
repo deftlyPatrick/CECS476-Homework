@@ -1,0 +1,146 @@
+
+
+
+
+
+1)
+
+cd /usr/src/linux/drivers/net/ethernet
+
+3c509.c 
+3c515.c
+3c59x.c
+3c574_cs.c
+
+2)
+
+cd /usr/src/linux/drivers/net/ethernet/intel
+
+i40e/
+fm10k/
+e1000e/
+
+3)
+
+18,19,20 are used for to signal ground
+
+4)
+
+[csa476p2@ip-10-0-16-16 ~]$ hostname
+ip-10-0-16-16.net.cecs476.net
+
+5)
+
+[root@ip-10-0-16-16 ~]# /sbin/ifconfig
+
+ether 12:2b:c4:64:13:57  txqueuelen 1000  (Ethernet)
+ether 12:eb:21:58:97:33  txqueuelen 1000  (Ethernet)
+
+6)
+
+broadcast 10.0.16.255
+broadcast 10.0.200.255
+
+7)
+[root@ip-10-0-16-16 ~]# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         ip-10-0-16-1.ec 0.0.0.0         UG    0      0        0 eth0
+default         ip-10-0-200-1.e 0.0.0.0         UG    10001  0        0 eth1
+10.0.16.0       0.0.0.0         255.255.255.0   U     0      0        0 eth0
+10.0.200.0      0.0.0.0         255.255.255.0   U     0      0        0 eth1
+instance-data.e 0.0.0.0         255.255.255.255 UH    0      0        0 eth0
+
+8)
+
+255.0.0.0
+
+------------------------------------------------------
+[root@ip-10-0-16-16 ~]# ping 10.0.16.53
+PING 10.0.16.53 (10.0.16.53) 56(84) bytes of data.
+64 bytes from 10.0.16.53: icmp_seq=1 ttl=255 time=1.07 ms
+64 bytes from 10.0.16.53: icmp_seq=2 ttl=255 time=0.211 ms
+64 bytes from 10.0.16.53: icmp_seq=3 ttl=255 time=0.225 ms
+64 bytes from 10.0.16.53: icmp_seq=4 ttl=255 time=0.216 ms
+64 bytes from 10.0.16.53: icmp_seq=5 ttl=255 time=0.175 ms
+^C
+--- 10.0.16.53 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4077ms
+rtt min/avg/max/mdev = 0.175/0.380/1.074/0.347 ms
+[root@ip-10-0-16-16 ~]# ping 10.0.16.16
+PING 10.0.16.16 (10.0.16.16) 56(84) bytes of data.
+64 bytes from 10.0.16.16: icmp_seq=1 ttl=255 time=0.019 ms
+64 bytes from 10.0.16.16: icmp_seq=2 ttl=255 time=0.031 ms
+64 bytes from 10.0.16.16: icmp_seq=3 ttl=255 time=0.033 ms
+64 bytes from 10.0.16.16: icmp_seq=4 ttl=255 time=0.030 ms
+64 bytes from 10.0.16.16: icmp_seq=5 ttl=255 time=0.032 ms
+^C
+--- 10.0.16.16 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4087ms
+rtt min/avg/max/mdev = 0.019/0.029/0.033/0.005 ms
+
+9)
+
+[root@ip-10-0-16-16 ~]# arp -a -n
+? (10.0.16.1) at 12:bc:3a:26:7a:5b [ether] on eth0
+
+10)
+
+vim /etc/nsswitch.cofn
+hosts:      files dns myhostname
+
+Files -> NIS -> DNS/Bin
+
+11)
+
+vim /etc/resolv.conf
+nameserver 10.0.0.2
+
+12)
+	
+vim /etc/resolv.conf
+search net.cecs476.net
+
+13)
+
+csa476p2@lynx:~$ route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+134.139.248.16  *               255.255.255.240 U     0      0        0 eth0
+localnet        jaguar.net.cecs 255.255.255.224 UG    0      0        0 eth0
+134.139.248.64  jaguar.net.cecs 255.255.255.224 UG    0      0        0 eth0
+loopback        *               255.0.0.0       U     0      0        0 lo
+default         cheetah.cecs.cs 0.0.0.0         UG    1      0        0 eth0
+
+= 255.255.255.224 and 255.255.255.240 
+
+14)
+
+csa476p2@lynx:~$ ping 134.139.248.67
+PING 134.139.248.67 (134.139.248.67) 56(84) bytes of data.
+From 134.139.248.18 icmp_seq=1 Destination Host Unreachable
+From 134.139.248.18 icmp_seq=2 Destination Host Unreachable
+From 134.139.248.18 icmp_seq=3 Destination Host Unreachable
+From 134.139.248.18 icmp_seq=4 Destination Host Unreachable
+
+134.139.248.18
+
+255.255.255.240
+
+15)
+
+internet number = 134.139.43.56
+netmask = 255.255.255.0
+
+134.139.43.0 = subnet number
+134.139.43.255 = subnet broadcast address
+
+
+16)
+
+internet number = 134.139.201.134
+netmask = 255.255.255.224
+
+134.139.201.128 = subnet number
+134.139.201.159 = subnet broadcast address
+

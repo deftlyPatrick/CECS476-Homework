@@ -1,0 +1,41 @@
+Patrick Wong
+Login Name: csa472p2
+
+1)
+
+cd /home
+tar -cf /dev/sdc bob
+
+2)
+
+tar -xpf ~djv/giant.tgz
+
+3)
+
+tar -xf ~djv/house.txz
+
+4)
+
+csa476p2@cheetah:~$ gpg ~djv/joe.cr
+gpg: CAST5 encrypted data
+gpg: encrypted with 1 passphrase
+gpg: /net/cheetah/u3/volper/joe.cr: unknown suffix
+Enter new filename: p2
+gpg: WARNING: message was not integrity protected
+
+vim p2
+Hi there joe
+
+5)
+
+`us` is used to start underlining
+:us=\E[4m:
+
+manpage termcap
+us = Start underlining
+
+6)
+
+CTRL-Z = to stop the output on the screen
+
+stop CHAR = CHAR will stop the output for CTRL Y

@@ -43,3 +43,13 @@ http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/tar.pdf
 http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/encryption.pdf
 http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/terminals.pdf
 http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment09.pdf
+
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment10.pdf
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/syslog.pdf
+
+week 6 links:
+
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/network_basics.pdf
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment11.pdf
+
+

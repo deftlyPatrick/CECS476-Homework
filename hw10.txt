@@ -1,0 +1,53 @@
+Patrick Wong
+Login Name: csa472p2
+
+1)
+/var/log/messages
+
+2)
+
+The systlog daemon has a server process which provides a message logging
+facility and is started by the Internet Daemon and receives messages on port
+514.
+
+3)
+
+mkdir mymaillog
+systemctl restart rsyslog
+
+------------------------------------------------------------------------------
+[root@ip-10-0-16-16 ~]# vim /var/log/mymaillog
+Mar  3 03:49:42 ip-10-0-16-16 postfix/pickup[32614]: EA157A1E05: uid=0
+from=<root>
+Mar  3 03:49:42 ip-10-0-16-16 postfix/cleanup[442]: EA157A1E05:
+message-id=<20210303034942.EA157A1E05@ip-10-0-16-16.net.cecs476.net>
+Mar  3 03:49:42 ip-10-0-16-16 postfix/qmgr[2586]: EA157A1E05:
+from=<root@ip-10-0-16-16.net.cecs476.net>, size=301, nrcpt=1 (queue active)
+Mar  3 03:49:42 ip-10-0-16-16 postfix/local[444]: EA157A1E05:
+to=<root@localhost.net.cecs476.net>, orig_to=<root@localhost>, relay=local,
+delay=0.04, delays=0.03/0.01/0/0, dsn=2.0.0, status=sent (delivered to
+mailbox)
+Mar  3 03:49:42 ip-10-0-16-16 postfix/qmgr[2586]: EA157A1E05: removed
+------------------------------------------------------------------------------
+
+4)
+
+-/var/log/maillog
+
+
+
+5)
+
+ logrotate /etc/logrotate.conf
+
+
+# keep 16 weeks worth of backlogs
+rotate 16
+
+6)
+
+/var/log/mymaillog{
+    monthly
+    size=2M
+    rotate 6
+}

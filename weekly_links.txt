@@ -52,4 +52,15 @@ week 6 links:
 http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/network_basics.pdf
 http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment11.pdf
 
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment12.pdf
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/network_basics.pdf
+
+
+week 7 links:
+
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/dhcp.pdf
+tah.cecs.csulb.edu/CECS476/homework_pdfs/assignment13.pdf
+
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment14.pdf
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/ftp.pdf
 

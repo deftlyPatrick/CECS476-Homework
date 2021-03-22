@@ -1,0 +1,79 @@
+Patrick Wong
+csa476p2
+
+1)
+
+ssh jaguar
+vim /etc/dhcpd.conf
+
+filename "/tftpboot/pxelinux.0"
+--------------------------------------------
+option domain-name "net.cecs.csulb.edu";
+option domain-name-servers 134.139.248.2;
+--------------------------------------------
+host lynx {
+    #hardware ethernet 00:11:11:92:0a:ad ;
+    hardware ethernet 00:22:4d:4c:78:a2 ;
+    fixed-address 134.139.248.22 ;
+  }
+
+2)
+
+grep -rnw '/etc/rc.d' -e 'dhcp'
+
+grep dhcpd * 2> /dev/null
+
+rc.inet1.conf
+
+3)
+
+tftp> csa476p2@jaguar:/tftpboot$ ps -ef|grep tftp
+root      1135     1  0  2020 ?        00:00:00 /usr/sbin/in.tftpd -l
+csa476p2 18536 18405  0 17:09 pts/5    00:00:00 grep tftp
+
+4)
+
+# Tftp service is provided primarily for booting.  Most sites
+# run this only on machines acting as "boot servers."
+# tftp  dgram   udp     wait    root    /usr/sbin/in.tftpd  in.tftpd -s
+/tftpboot -r blksize
+
+Loads from sbin and calling the specific file
+
+5)
+
+The inetd.conf because you can add security to it which can make the file
+immutable
+
+6)
+
+LABEL local
+   MENU LABEL ^Local: Boot From the Local Machine
+   LOCALBOOT 0
+
+LABEL NETBOOT_SLACKWARE
+   MENU LABEL ^Netboot: Boot From Jaguar Loader^
+   append initrd=initrd.img load_ramdisk=1 prompt_ramdisk=0 rw
+SLACK_KERNEL=huge.s kbd=1
+   kernel bzImage
+
+7)
+hugesmp.s
+--------------------------------------
+kernels/huge.s/bzImage
+kernels/hugesmp.s/bzImage
+kernel kernels/speakup.s/bzImage
+--------------------------------------
+display message.txt
+F1 message.txt
+F2 f2.txt
+
+8)
+
+domain-name: ec2.internal
+domain-name-servers: AmazonProvidedDNS
+--------------------------------------
+domain-name: net.cecs476.net
+domain-name-servers: 10.0.0.2
+--------------------------------------
+ntp-servers: 10.0.0.2

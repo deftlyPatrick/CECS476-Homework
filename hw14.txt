@@ -62,3 +62,52 @@ listen_ipv6=NO
 
 
 sudo mkdir -p /var/ftp/pub
+
+2)
+
+[csa476p2@csa476p2-server pub]$ echo "vsftpd test file" | sudo tee /var/ftp/pub/dummy.txt
+----------------------------------------------------------------------------------------------
+[csa476p2@gateway ~]$ ftp 10.0.16.16
+Connected to 10.0.16.16 (10.0.16.16).
+220 (vsFTPd 3.0.2)
+Name (10.0.16.16:csa476p2): anonymous
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+-------------------------------------------------
+ftp> ls
+227 Entering Passive Mode (10,0,16,16,72,203).
+150 Here comes the directory listing.
+drwxr-xr-x    2 0        0              23 Mar 23 03:45 pub
+226 Directory send OK.
+-------------------------------------------------
+ftp> cd pub
+250 Directory successfully changed.
+-------------------------------------------------
+ftp> ls
+227 Entering Passive Mode (10,0,16,16,172,204).
+150 Here comes the directory listing.
+-rw-r--r--    1 0        0              17 Mar 23 03:45 dummy.txt
+226 Directory send OK.
+-------------------------------------------------
+ftp> get dummy.txt
+local: dummy.txt remote: dummy.txt
+227 Entering Passive Mode (10,0,16,16,49,132).
+150 Opening BINARY mode data connection for dummy.txt (17 bytes).
+226 Transfer complete.
+17 bytes received in 3.3e-05 secs (515.15 Kbytes/sec)
+------------------------------------------------------------------------------------------
+
+3)
+
+[csa476p2@csa476p2-server vsftpd]$ sudo vim vsftpd.conf
+
+# You may fully customise the login banner string:
+ ftpd_banner=Hello World
+
+
+4)
+
+[csa476p2@csa476p2-server vsftpd]$ sudo vim user_list

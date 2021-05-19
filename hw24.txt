@@ -1,0 +1,48 @@
+Patrick Wong
+csa476p2
+
+1)
+
+mkfs.ext4 /dev/sdb2
+
+mount /home
+
+file /dev/nvme1n1p2
+
+tar czpf /home.tgz /home
+tar -tf /home.tgz
+
+umount /dev/sdb2
+
+2)
+
+vim /etc/fstab
+/dev/sdb2 /home ext4 usrquota 1 1
+
+3)
+quotacheck -cug /home
+
+edquota -u bob
+
+csa476p2-server ~]# quota bob
+Disk quotas for user bob (uid 13101):
+     Filesystem  blocks   quota   limit   grace   files   quota   limit
+grace
+ /dev/nvme2n1p2     124  2000000 5000000              26       0       0
+quotaon -all
+
+-bash-4.2$ sudo tar xvf /etc/backup.tar.gz
+
+sudo find /etc/ -type f -size +5M 
+
+4)
+[csa476p2@csa476p2-server ~]$ ls -l /etc/backup.tar.gz
+-rw-r--r-- 1 root root 162293760 May  6 22:50 /etc/backup.tar.gz
+
+cp /etc/backup.tar.gz /home/bob
+
+5
+
+[bob@csa476p2-server ~]$ cp /etc/backup.tar.gz /home/bob
+cp: error writing ‘/home/bob/backup.tar.gz’: Disk quota exceeded
+cp: failed to extend ‘/home/bob/backup.tar.gz’: Disk quota exceeded)

@@ -1,0 +1,121 @@
+1)
+
+http://gateway.cecs476.net:18038/index.html
+root@csa476p2-server conf]# vim httpd.conf
+#
+# Listen: Allows you to bind Apache to specific IP addresses and/or
+# ports, instead of the default. See also the <VirtualHost>
+# directive.
+#
+# Change this to Listen on specific IP addresses as shown below to
+# prevent Apache from glomming onto all bound IP addresses.
+#
+#Listen 12.34.56.78:80
+Listen 18038
+
+
+
+2)
+
+cd /bob
+mkdir public_html
+vim index.html
+
+chown bob:cecsu public_html
+
+http://gateway.cecs476.net:18038/~bob/
+
+
+3) cd /sue
+mkdir public_html
+vim index.html
+
+chown sue:cecsu public_html
+
+
+[root@csa476p2-server conf.d]# vim userdir.conf
+<Directory "/home/sue/public_html">
+        Deny from all
+</Directory>
+
+http://gateway.cecs476.net:18038/~sue/
+
+4)
+
+http://gateway.cecs476.net:18038/~bob/limited/
+
+mkdir limited
+vim .htaccess
+--------------------
+AuthName "MyCluster"
+AuthType Basic
+AuthUserFile /home/bob/public_html/limited/users
+require valid-user
+--------------------
+vim .passwd
+
+
+htpasswd -c users bob
+access31
+
+htpasswd -c users joe
+access33
+
+
+5)
+
+http://gateway.cecs476.net:18038/test.secret
+
+http://gateway.cecs476.net:18038/~bob/test.secret
+
+
+[bob@csa476p2-server conf.d]$ ls /home/bob
+bashlog  clook.sh  cpeek.sh  demo  id_rsa.pub  lsFile  public_html
+test.secret  test.sh
+
+[bob@csa476p2-server conf.d]$ pwd
+/etc/httpd/conf.d
+[bob@csa476p2-server conf.d]$ ls
+autoindex.conf  README  userdir.conf  users  welcome.conf
+[bob@csa476p2-server conf.d]$ vim userdir.conf
+<FilesMatch ".+\.secret">
+        Deny from all
+        Satisfy All
+</FilesMatch>
+
+
+
+6)
+
+cd /home/bob/public_html
+vim msg.cgi
+---------------
+
+#!/bin/tcsh
+echo "Content-type: text/html\n"
+echo "Hi there from cgi (tcsh)."
+
+
+-----------------
+
+
+cd /etc/httpd/conf.d/userdir.conf
+----------------
+
+<Directory "/home/bob/public_html">
+        Options +ExecCGI
+        AddHandler cgi-script .cgi
+</Directory>
+
+AddHandler cgi-script .cgi
+
+http://gateway.cecs476.net:18038/~bob/msg.cgi
+
+
+
+
+
+
+http://gateway.cecs476.net:18038/~bob/msg.cgi
+
+

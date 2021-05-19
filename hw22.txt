@@ -1,0 +1,228 @@
+Patrick Wong
+csa476p2
+
+
+1)
+
+# The first version of the line gives write permission to the
+# machine that contains the new load image.
+#/load 134.139.248.34(rw,sync,no_root_squash,no_subtree_check)
+134.139.248.43(rw,sync,no_root_squash,no_subtree_check)
+# this version doesn't seem to work correctly
+#/load 134.139.0.0/255.255.0.0(ro,sync,no_subtree_check)
+134.139.248.43(rw,sync,no_root_squash,no_subtree_check)
+# This is the version that allows every one to load from the network
+/load 134.139.248.0/255.255.255.0(ro,sync,no_subtree_check)
+#/sdb/slack13.1 134.139.0.0/255.255.0.0(ro,sync,no_subtree_check)
+#/sdb/slack13.1/slackware 134.139.0.0/255.255.0.0(ro,sync,no_subtree_check)
+/sdb/slack13.37-64/slackware64
+134.139.248.0/255.255.255.0(ro,sync,no_subtree_check)
+/sdb/slack13.37/slackware
+134.139.248.0/255.255.255.0(ro,sync,no_subtree_check)
+/sdb/slack14.2-64/slackware64
+134.139.248.0/255.255.255.0(ro,sync,no_subtree_check)
+
+134.139.248.0 -> /load  | read/write | sync | no_subtree_check
+134.139.248.0 -> /sdb/slack13.37-64/slackware64 | read only | sync |
+no_subtree_check
+134.139.248.0 -> /sdb/slack13.37/slackware | read only | sync |
+no_subtree_check
+134.139.248.0 -> /sdb/slack14.2-64/slackware64 | read only | sync |
+no_subtree_check
+
+2)
+
+/dev/sda1        swap             swap        defaults         0   0
+/dev/sda2        /                ext2        defaults         1   1
+#/dev/cdrom      /mnt/cdrom       auto        noauto,owner,ro  0   0
+/dev/fd0         /mnt/floppy      auto        noauto,owner     0   0
+devpts           /dev/pts         devpts      gid=5,mode=620   0   0
+proc             /proc            proc        defaults         0   0
+tmpfs            /dev/shm         tmpfs       defaults         0   0
+134.139.248.17:/u3 /net/cheetah/u3 nfs soft,bg,nolock 0 0
+134.139.248.17:/u4 /net/cheetah/u4 nfs soft,bg,nolock 0 0
+
+
+134.139.248.17:/u3 /net/cheetah/u3 nfs soft,bg,nolock 0 0
+134.139.248.17:/u4 /net/cheetah/u4 nfs soft,bg,nolock 0 0
+
+
+3)
+
+csa476p2@cheetah:/net/cheetah/u3$ showmount --exports
+Export list for cheetah:
+/u4
+134.139.248.0/255.255.255.240,134.139.248.16/255.255.255.240,134.139.248.64/255.255.255.224,134.139.248.32/255.255.255.224
+/u3
+134.139.248.0/255.255.255.240,134.139.248.16/255.255.255.240,134.139.248.64/255.255.255.224,134.139.248.32/255.255.255.224
+
+csa476p2@cheetah:~$ cd /etc/auto.master
+-bash: cd: /etc/auto.master: Not a directory
+csa476p2@cheetah:~$ cat /etc/auto.master
+#
+# Sample auto.master file
+# This is an automounter map and it has the following format
+# key [ -mount-options-separated-by-comma ] location
+# For details of the format look at autofs(5).
+#
+#/misc  /etc/auto.misc
+#
+# NOTE: mounts done from a hosts map will be mounted with the
+#       "nosuid" and "nodev" options unless the "suid" and "dev"
+#       options are explicitly given.
+#
+#/net   -hosts
+#
+# Include central master map if it can be found using
+# nsswitch sources.
+#
+# Note that if there are entries for /net or /misc (as
+# above) in the included master map any keys that are the
+# same will not be seen as the first read key seen takes
+# precedence.
+#
+#+auto.master
+/net/aardvark /etc/auto.aardvark
+/net/lab     /etc/auto.lab
+
+csa476p2@cheetah:~$ mount
+/dev/sda2 on / type ext4 (rw)
+proc on /proc type proc (rw)
+sysfs on /sys type sysfs (rw)
+tmpfs on /dev/shm type tmpfs (rw)
+/dev/sdb1 on /u3 type ext4 (rw)
+/dev/sdc1 on /u4 type ext4 (rw)
+nfsd on /proc/fs/nfs type nfsd (rw)
+nfsd on /proc/fs/nfsd type nfsd (rw)
+aardvark.cecs.csulb.edu:/u1 on /net/aardvark/u1 type nfs
+(rw,soft,intr,nsfvers=2,sloppy,addr=134.139.248.3)
+
+csa476p2@cheetah:~$ cat /etc/fstab
+/dev/sda1        swap             swap        defaults         0   0
+/dev/sda2        /                ext4        defaults         1   1
+#/dev/cdrom      /mnt/cdrom       auto        noauto,owner,ro  0   0
+/dev/fd0         /mnt/floppy      auto        noauto,owner     0   0
+devpts           /dev/pts         devpts      gid=5,mode=620   0   0
+proc             /proc            proc        defaults         0   0
+tmpfs            /dev/shm         tmpfs       defaults         0   0
+/dev/sdb1        /u3              ext4        defaults         1   1
+/dev/sdc1        /u4              ext4        defaults         1   1
+
+csa476p2@cheetah:/net/cheetah/u3$ df
+Filesystem                  1K-blocks      Used Available Use% Mounted on
+/dev/root                   865292600  25923468 795414820   4% /
+devtmpfs                       995744         0    995744   0% /dev
+tmpfs                          997968       888    997080   1% /run
+tmpfs                          997968         0    997968   0% /dev/shm
+cgroup_root                    997968         0    997968   0% /sys/fs/cgroup
+/dev/sdb1                   480589544  51202284 404951600  12% /u3
+/dev/sdc1                   480589544 303430716 152723168  67% /u4
+cgmfs                             100         0       100   0%
+/run/cgmanager/fs
+aardvark.cecs.csulb.edu:/u1 432649216  29500416 381171712   8%
+/net/aardvark/u1
+
+csa476p2@cheetah:/net/aardvark/u1/volper$ ls -l
+total 164
+-rw-r--r--  1 volper facultyold  2192 Mar 24  2020 476m.pdf
+drwxr-xr-x  2 volper facultyold  4096 Oct  1  2014 Desktop/
+drwxr-xr-x  7 volper facultyold  4096 Feb 12 22:06 accounts/
+drwxr-xr-x  7 volper facultyold  4096 Dec  5  1997 ada/
+drwxr-xr-x  2 volper facultyold  4096 Jan 20 21:50 bin/
+drwxr-xr-x 10 volper facultyold  4096 Jan 28  2019 classes/
+drwx------  2 volper facultyold  4096 Apr 25  2013 inmail/
+drwxr-xr-x  5 volper facultyold  4096 Jul 31  2013 labs/
+drwxr-xr-x  2 volper facultyold  4096 Jan 22  2019 lib/
+drwxr-xr-x  4 volper facultyold  4096 Jun 19  2016 linux/
+-rw-r--r--  1 volper facultyold   912 Nov 20  2013 listeat.out
+-rw-r--r--  1 volper facultyold   921 Nov 20  2013 listeat.txt
+drwx------  2 volper facultyold  4096 Feb 17  2014 logs/
+-rw-r--r--  1 volper facultyold 92829 Aug 26  2013 per.tgz
+drwx------  3 volper facultyold  4096 May 27  2018 personal/
+drwx------  2 volper facultyold  4096 Mar 23 17:47 private/
+-r--r--r--  1 volper facultyold  2414 Jun 27  2000 system.twmrc
+drwxr-xr-x  5 volper facultyold  4096 Dec 19  2018 testprograms/
+drwxr-xr-x  4 volper facultyold  4096 May 14  2020 xfer/
+
+
+4)
+
+mkdir /mnt/test
+mount -t nfs 10.0.8.189:/datadump /mnt/test
+
+[root@csa476p2-server ~]# cat /etc/fstab
+UUID=55da5202-8008-43e8-8ade-2572319d9185     /           xfs
+defaults,noatime  1   1
+/dev/sdb2 /newdisk ext2 defaults 1 1
+#/dev/sdc2 /mount/diskthree ext2 defaults 1 1
+
+/dev/sdb1 none swap sw 0 0
+/myswap none swap sw 0 0
+10.0.8.189:/datadump /mnt/test nfs defaults 0 0
+[root@csa476p2-server ~]#
+
+mount /mnt/test
+
+
+5)
+
+
+[csa476p2@csa476p2-server ~]$ cat /etc/exports
+/var 10.0.8.189(ro,sync,no_subtree_check)
+
+[csa476p2@csa476p2-server ~]$ rpcbind
+
+systemctl start nfs
+exportfs -ra
+
+6)
+
+[root@csa476p2-server etc]# cat auto.master
+#
+# Sample auto.master file
+# This is a 'master' automounter map and it has the following format:
+# mount-point [map-type[,format]:]map [options]
+# For details of the format look at auto.master(5).
+#
+/misc   /etc/auto.misc
+#
+# NOTE: mounts done from a hosts map will be mounted with the
+#       "nosuid" and "nodev" options unless the "suid" and "dev"
+#       options are explicitly given.
+#
+/net    -hosts
+#
+# Include /etc/auto.master.d/*.autofs
+# The included files must conform to the format of this file.
+#
++dir:/etc/auto.master.d
+#
+# Include central master map if it can be found using
+# nsswitch sources.
+#
+# Note that if there are entries for /net or /misc (as
+# above) in the included master map any keys that are the
+# same will not be seen as the first read key seen takes
+# precedence.
+#
++auto.master
+
+
+/media/load /etc/test.csa
+
+---------------------------------------------------------------------------
+
+[root@csa476p2-server etc]# cat test.csa
+load -soft,intr 10.0.8.189:/load
+
+
+--------------------------------------------------------------------------
+
+systemctl start autofs
+
+--------------------------------------------------------------------------
+
+[root@csa476p2-server load]# ls
+testloadfile.cfg
+[root@csa476p2-server load]# pwd
+/media/load/load

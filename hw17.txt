@@ -1,0 +1,183 @@
+Patrick Wong
+csa476p2
+
+1)
+
+ns-1810.awsdns-34.co.uk. 
+ns-1495.awsdns-58.org. 
+ns-855.awsdns-42.net. 
+ns-13.awsdns-01.com.
+
+
+2)
+
+cheetah - type: CNAME
+cheetah.cecs.csulb.edu
+
+gateway - type: A
+54.234.151.78
+
+
+
+
+Part 2)
+
+named.conf 
+--------------------------------------------
+//
+// named.conf
+//
+// Provided by Red Hat bind package to configure the ISC BIND named(8) DNS
+// server as a caching only nameserver (as a localhost DNS resolver only).
+//
+// See /usr/share/doc/bind*/sample/ for example named configuration files.
+//
+// See the BIND Administrator's Reference Manual (ARM) for details about the
+// configuration located in /usr/share/doc/bind-{version}/Bv9ARM.html
+
+options {
+        listen-on port 53 { 127.0.0.1; };
+        listen-on-v6 port 53 { ::1; };
+        directory       "/var/named";
+        dump-file       "/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+        recursing-file  "/var/named/data/named.recursing";
+        secroots-file   "/var/named/data/named.secroots";
+        allow-query     { localhost; };
+
+        /*
+         - If you are building an AUTHORITATIVE DNS server, do NOT enable
+           recursion.
+         - If you are building a RECURSIVE (caching) DNS server, you need to
+           enable
+           recursion.
+         - If your recursive DNS server has a public IP address, you MUST
+           enable access
+           control to limit queries to your legitimate users. Failing to do so
+will
+           cause your server to become part of large scale DNS amplification
+           attacks. Implementing BCP38 within your network would greatly
+           reduce such attack surface
+        */
+        recursion yes;
+
+        dnssec-enable yes;
+        dnssec-validation yes;
+
+        /* Path to ISC DLV key */
+        bindkeys-file "/etc/named.root.key";
+
+        managed-keys-directory "/var/named/dynamic";
+
+        pid-file "/run/named/named.pid";
+        session-keyfile "/run/named/session.key";
+};
+logging {
+        channel default_debug {
+                file "data/named.run";
+                severity dynamic;
+        };
+};
+
+zone "." IN {
+        type hint;
+        file "named.ca";
+};
+
+zone "net-p2.cecs476.net" IN {
+        type master;
+        file "/var/named/named.hosts";
+        allow-update { none; };
+        allow-transfer { any; };
+};
+
+zone "1.168.192.in-addr.arpa" IN {
+        type master;
+        file "/var/named/named.rev";
+        allow-update { none; };
+};
+
+
+#zone "localhost" IN {
+#        type master;
+#        file "/var/named/localhost.zone";
+#        allow-update { none; };
+#};
+
+zone "0.0.127.in-addr.arpa" IN {
+        type master;
+        file "/var/named/named.local";
+        allow-update { none; };
+};
+
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+
+----------------------------------------------------------
+named.hosts
+-------------------------------------------
+@ IN SOA csa476p2-server.net.cecs476.net.
+root.csa476p2-server.net.cecs476.net. (
+                       1
+                       7200
+                       900
+                       1209600
+                       86400 ) ;
+  IN NS csa476p2-server.net.cecs476.net.
+test01 IN A 192.168.1.1
+test02 IN A 192.168.1.2
+----------------------------------------------------
+
+named.rev
+-------------------------------------------
+
+@ IN SOA csa476p2-server.net.cecs476.net.
+root.csa476p2-server.net.cecs476.net. (
+                       1
+                       7200
+                       900
+                       1209600
+                       86400 ) ;
+
+ IN NS csa476p2-server.net.cecs476.net.
+10.0.16.16.in-addr.arpa IN PTR csa476p2
+1 IN PTR test01
+2 IN PTR test02
+
+
+-------------------------------------------------------------------------------------------
+
+
+[root@csa476p2-server etc]# nslookup csa476p2-server.net.cecs476.net
+Server:         10.0.0.2
+Address:        10.0.0.2#53
+
+Non-authoritative answer:
+Name:   csa476p2-server.net.cecs476.net
+Address: 10.0.16.16
+
+
+
+[root@csa476p2-server etc]# nslookup test01.net-p2.cecs476.net localhost
+Server:         localhost
+Address:        127.0.0.1#53
+
+Name:   test01.net-p2.cecs476.net
+Address: 192.168.1.1
+
+
+[root@csa476p2-server etc]# nslookup 192.168.1.1 localhost
+1.1.168.192.in-addr.arpa        name = test01.1.168.192.in-addr.arpa.
+
+
+[root@csa476p2-server etc]# nslookup test02.net-p2.cecs476.net localhost
+Server:         localhost
+Address:        127.0.0.1#53
+
+Name:   test02.net-p2.cecs476.net
+Address: 192.168.1.2
+
+[root@csa476p2-server etc]# nslookup 192.168.1.2 localhost
+2.1.168.192.in-addr.arpa        name = test02.1.168.192.in-addr.arpa.

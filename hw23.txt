@@ -1,0 +1,120 @@
+Patrick Wong
+csa476p2
+
+
+1)
+
+
+csa476p2@jaguar:~$ domainname
+cecsnet
+csa476p2@jaguar:~$ cat /etc/defaultdomain
+cecsnet
+
+2)
+
+csa476p2@jaguar:/etc$ ypwhich
+cheetah.cecs.csulb.edu
+
+3)
+
+csa476p2@jaguar:~$ ypcat passwd
+csa476g1:$6$sMHgMjBu$BDUTq7zqbGySVqFANlEkJZlJbGZmhBEtqnCTTdC4RutwCusGvqZQitQfdSHCxJ7C60Vbmoys1Yq0g4QIDaZLa1:20049:40:student:/net/cheetah/u3/c/csa476/g1:/bin/bash
+npickrell:$6$u8H35im14F/RUYPF$Ocr8X/7qFc26XyxUpZ5zcZo5NDeOA1KO0rD2ARmDbePbQOt/C0QvtZ51ERsqrB/6onN3zPqRjMGTfMVjZ7wMU0:5555:1002:Nate
+Pickrell:/net/cheetah/u3/npickrell:/bin/bash
+csa476l2:$6$DqMNMt8Y$4C72PINaBPhHChFWGXMIdLwZspRW383uoL9EiT9MdNNPhacBiYjahnY88f1ROhZ7RAQpEI65NbERRBZYq6eKr/:20080:40:student:/net/cheetah/u3/c/csa476/l2:/bin/bash
+csa476m2:$6$lEajq/4tTNEQ5pL$8jNB8MxuP6DjAFgxSwwVKgmTapi0EsurWmk5TjbQuwyhvxbpTFYA/PanxtBoQOa3MrEmQCtcSsgxoT394YD.w/:20081:40:student:/net/cheetah/u3/c/csa476/m2:/bin/bash
+csa476c2:$6$Dj36EdKO$h4N/4LGLf.jZJrtNfcar7jDLfHMpiFiIuvLjoZlmSUUmAdX3vtyuC16JEZnhlQBYfkR7xbfuh8Sd/OWKDPXEI1:20071:40:student:/net/cheetah/u3/c/csa476/c2:/bin/bash
+csa476n2:$6$evHqcFCG$HhEqmUUaUr5FUBaegSUEb9nrYf.uU02mUt2a.PScX5XNAigYdIlGIz2LxTqCQCon0bSu4LbI2LIL8shDh3SuH0:20082:40:student:/net/cheetah/u3/c/csa476/n2:/bin/bash
+conf:*:1357:1002:CECS conf:/net/aardvark/u1/conf:/bin/false
+csa476d2:$6$KMEFYiyG$pVJzoP2uBIdAKAGpLBNyrgFWBAi7JqJLqOO2j2ZntWIIESBZIS9IZkkv0wmB/z0n4.xuW126FvK7BjQS/7ucB0:20072:40:student:/net/cheetah/u3/c/csa476/d2:/bin/bash
+djv:legacy:5444:1002:Volper lab account:/net/cheetah/u3/volper:/bin/bash
+csa476o2:$6$h5WL//THVEBg5$lyBwlOJB5Yg84xoIopmYmUDcaA4uDi2uZw23J91QP3//6nOFRY4v/8jqJiziup8xvbIn4tumoEhfwWoHuwSMJ/:20083:40:student:/net/cheetah/u3/c/csa476/o2:/bin/bash
+
+4)
+
+ypcat passwd | grep csa476p2
+
+csa476p2@jaguar:~$ ypmatch csa476p2 passwd
+csa476p2:$6$hyxuL/5I$DjWj5wMHr5oFr4Hax0nNn197uR.7XqdbfdEHnVXQ.8m2.emBMM6DDHA5wYV5jAxNwpshV.SZNjnOBqkAV3fwo1:20084:40:student:/net/cheetah/u3/c/csa476/p2:/bin/bash
+
+5)
+
+csa476p2@jaguar:/var/yp$ ls
+Makefile  binding/  nicknames  securenets
+
+Makename
+
+6)
+
+
+csa476p2@jaguar:~$ cat /etc/yp.conf
+# /etc/yp.conf - ypbind configuration file
+# Valid entries are
+#
+# domain NISDOMAIN server HOSTNAME
+#       Use server HOSTNAME for the domain NISDOMAIN.
+#
+# domain NISDOMAIN broadcast
+#       Use  broadcast  on  the local net for domain NISDOMAIN
+#
+# domain NISDOMAIN slp
+#       Query local SLP server for ypserver supporting NISDOMAIN
+#
+# ypserver HOSTNAME
+#       Use server HOSTNAME for the  local  domain.  The
+#       IP-address of server must be listed in /etc/hosts.
+#
+# broadcast
+#       If no server for the default domain is specified or
+#       none of them is rechable, try a broadcast call to
+#       find a server.
+#
+ypserver 134.139.248.17
+
+7)
+
+PID_PATH=/var/run
+
+ # NIS SERVER CONFIGURATION:
+    # If you are the master server for the NIS domain, you must run ypserv to
+    # service clients on the domain.
+
+  # If you are the master server for the NIS domain, you must also run
+    # rpc.yppasswdd, which is the RPC server that lets users change their
+    # passwords.  You might also want users to be able to change their shell
+    # and GECOS information, in which case you should comment out the first
+    # yppasswdd line and uncomment out the second one.
+
+ # If you have NIS slave servers, you might also want to start up
+    # rpc.ypxfrd, which transfers changes in the NIS domain to slave servers.
+    # Alternatively, rpc.ypxfrd can be run out of inetd.
+
+
+ # NIS CLIENT CONFIGURATION:
+    # If you are a NIS client, all you need to do is run ypbind, which will
+    # broadcast across the network to find a server.  Your NIS server might
+    # also be a client.
+
+8)
+
+Yes, the format is
+
+passwd:         files nis
+group:          files nis
+
+9)
+
+3
+
+cslabd (panther,-,) (puma,-,) (lynx,-,)
+
+10)
+
+csa476p2@jaguar:~$ id -u djv
+5444
+
+csa476p2@jaguar:~$ id djv
+uid=5444(djv) gid=1002(faculty) groups=1002(faculty)
+
+csa476p2@jaguar:~$ getent passwd djv
+djv:legacy:5444:1002:Volper lab account:/net/cheetah/u3/volper:/bin/bash

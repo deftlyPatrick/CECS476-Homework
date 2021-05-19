@@ -1,0 +1,166 @@
+Patrick Wong
+csa476p2
+
+
+
+1)
+
+Nmap is used to discover host and services on a network by sending packets and
+analyzing responses, it also provies a number of features for probing networks
+which includes host discover, service, and OS detection. 
+-----------------------------------------------------------------------
+csa476p2@cheetah:~$ slackpkg info nmap
+
+PACKAGE NAME:  nmap-7.12-x86_64-1.txz
+PACKAGE LOCATION:  ./slackware64/n
+PACKAGE SIZE (compressed):  5504 K
+PACKAGE SIZE (uncompressed):  26280 K
+PACKAGE DESCRIPTION:
+nmap: nmap (network scanner)
+nmap:
+nmap: Nmap ("Network Mapper") is an open source utility for network
+nmap: exploration or security auditing.  It was designed to rapidly scan
+nmap: large networks, although it works fine against single hosts.  Nmap
+nmap: uses raw IP packets in novel ways to determine what hosts are
+nmap: available on the network, what services (ports) they are offering,
+nmap: what operating system (and OS version) they are running, what type of
+nmap: packet filters/firewalls are in use, and dozens of other
+nmap: characteristics.  Nmap runs on most types of computers, and both
+nmap: console and graphical versions are available.
+
+
+2)
+
+csa476p2@cheetah:~$ slackpkg upgrade-all
+------------------------------------------------------------------------
+csa476p2@cheetah:~$ slackpkg install <file>
+
+3)
+
+[csa476p2@csa476p2-server ~]$ rpm -qa
+ec2-utils-1.2-3.amzn2.noarch
+pth-2.0.7-23.amzn2.0.2.x86_64
+kbd-misc-1.15.5-15.amzn2.noarch
+chrony-3.5.1-1.amzn2.0.1.x86_64
+hardlink-1.3-3.amzn2.x86_64
+basesystem-10.0-7.amzn2.0.1.noarch
+awscli-1.18.147-1.amzn2.0.1.noarch
+libsepol-2.5-8.1.amzn2.0.2.x86_64
+hunspell-1.3.2-16.amzn2.x86_64
+cracklib-2.9.0-11.amzn2.0.2.x86_64
+chkconfig-1.7.4-1.amzn2.0.2.x86_64
+grubby-8.28-23.amzn2.0.1.x86_64
+libdb-5.3.21-24.amzn2.0.3.x86_64
+libverto-libevent-0.2.5-4.amzn2.0.2.x86_64
+kmod-25-3.amzn2.0.2.x86_64
+........
+.......
+......
+.....
+....
+...
+..
+.
+
+
+4)
+
+[csa476p2@csa476p2-server ~]$ rpm -ql openssh
+/etc/ssh
+/etc/ssh/moduli
+/usr/bin/ssh-keygen
+/usr/libexec/openssh
+/usr/libexec/openssh/ctr-cavstest
+/usr/libexec/openssh/ssh-keysign
+/usr/share/doc/openssh-7.4p1
+/usr/share/doc/openssh-7.4p1/CREDITS
+/usr/share/doc/openssh-7.4p1/ChangeLog
+/usr/share/doc/openssh-7.4p1/INSTALL
+/usr/share/doc/openssh-7.4p1/OVERVIEW
+/usr/share/doc/openssh-7.4p1/PROTOCOL
+/usr/share/doc/openssh-7.4p1/PROTOCOL.agent
+/usr/share/doc/openssh-7.4p1/PROTOCOL.certkeys
+/usr/share/doc/openssh-7.4p1/PROTOCOL.chacha20poly1305
+/usr/share/doc/openssh-7.4p1/PROTOCOL.key
+/usr/share/doc/openssh-7.4p1/PROTOCOL.krl
+/usr/share/doc/openssh-7.4p1/PROTOCOL.mux
+/usr/share/doc/openssh-7.4p1/README
+/usr/share/doc/openssh-7.4p1/README.dns
+/usr/share/doc/openssh-7.4p1/README.platform
+/usr/share/doc/openssh-7.4p1/README.privsep
+/usr/share/doc/openssh-7.4p1/README.tun
+/usr/share/doc/openssh-7.4p1/TODO
+/usr/share/licenses/openssh-7.4p1
+/usr/share/licenses/openssh-7.4p1/LICENCE
+/usr/share/man/man1/ssh-keygen.1.gz
+/usr/share/man/man8/ssh-keysign.8.gz
+
+5)
+
+[csa476p2@gateway ~]$ rpm -q --requires sshpass
+libc.so.6()(64bit)
+libc.so.6(GLIBC_2.15)(64bit)
+libc.so.6(GLIBC_2.2.5)(64bit)
+libc.so.6(GLIBC_2.3.4)(64bit)
+libc.so.6(GLIBC_2.4)(64bit)
+rpmlib(CompressedFileNames) <= 3.0.4-1
+rpmlib(FileDigests) <= 4.6.0-1
+rpmlib(PayloadFilesHavePrefix) <= 4.0-1
+rtld(GNU_HASH)
+rpmlib(PayloadIsXz) <= 5.2-1
+
+6)
+
+[root@csa476p2-server ~]# yum update
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+amzn2-core
+| 3.7 kB  00:00:00
+amzn2extra-docker
+| 3.0 kB  00:00:00
+No packages marked for update
+
+
+[root@csa476p2-server ~]# yum upgrade
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+No packages marked for update
+
+7)
+
+sudo yum install epel-release
+sudo yum repolist
+sudo yum --disablerepo="*" --enablerepo="epel" list available
+
+8)
+
+yum install sshpass
+---------------------------------------------------------------------------------------------------------------------
+Dependencies Resolved
+
+========================================================================================================================
+ Package                     Arch                       Version
+Repository                Size
+========================================================================================================================
+Installing:
+ sshpass                     x86_64                     1.06-1.el7
+epel                      21 k
+
+Transaction Summary
+========================================================================================================================
+Install  1 Package
+
+
+9)
+
+[root@csa476p2-server ~]# ls /etc/yum.repos.d/
+amzn2-core.repo  amzn2-extras.repo  epel.repo  epel-testing.repo
+
+[root@csa476p2-server ~]# vim  /etc/yum.repos.d/epel.repo
+----------------------------------------------------------------------------------------------------------------------
+[epel]
+name=Extra Packages for Enterprise Linux 7 - $basearch
+#baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=$basearch
+failovermethod=priority
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7

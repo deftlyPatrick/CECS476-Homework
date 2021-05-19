@@ -1,0 +1,68 @@
+Patrick Wong
+csa476p2
+
+1)
+
+vim clogit.c -o clogit
+vim datelog
+
+chmod 600 datelog
+chmod 4711 clogit
+
+./clogit
+
+2)
+
+[bob@csa476p2-server ~]$ vim print_datelog
+#!/bin/bash
+echo $(tail -2 datelog)
+
+[bob@csa476p2-server ~]$ chmod 4711 print_datelog
+
+[bob@csa476p2-server ~]$ bash print_datelog
+bob Mon Apr 19 23:22:57 2021 bob Mon Apr 19 23:41:43 2021
+
+3)
+/etc/login.defs
+
+# Max time in seconds for login
+#
+LOGIN_TIMEOUT           60
+
+4)
+
+#
+# If defined, file which inhibits all the usual chatter during the login
+# sequence.  If a full pathname, then hushed mode will be enabled if the
+# user's name or shell are found in the file.  If not a full pathname, then
+# hushed mode will be enabled if the file exists in the user's home directory.
+#
+HUSHLOGIN_FILE  .hushlogin
+#HUSHLOGIN_FILE /etc/hushlogins
+
+
+6)
+
+csa476p2@cheetah:~$ last -a | head -3
+csa476p2 pts/2        Mon Apr 19 21:02   still logged in    104.129.192.69
+csa476j1 pts/0        Mon Apr 19 20:58   still logged in    98.149.96.131
+csa476j1 pts/3        Mon Apr 19 20:41   still logged in    98.149.96.131
+
+
+7)
+[root@csa476p2-server ~]# iptables -A INPUT -p22 -s 3.82.190.135 -j REJECT
+[root@csa476p2-server ~]# ssh 3.82.190.135
+
+8)
+[root@csa476p2-server ~]# iptables -F
+
+$IPT -P INPUT ACCEPT
+
+9)
+
+$IPT -t nat -A PREROUTING -i "$EXTINF" -p tcp --dport 2022 -j DNAT
+--to-destination 134.139.249.106:2022
+$IPT -A FORWARD -o "$LABINF" -p tcp --dport 2022 -j DROP
+$IPT -A FORWARD -i "$EXTINF" -p tcp --dport 2022 -j ACCEPT
+$IPT -t nat -A POSTROUTING -o "$EXTINF"  -p tcp -d 134.139.249.106 --dport
+2022 -j SNAT --to-source 134.139.248.2

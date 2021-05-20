@@ -64,3 +64,39 @@ tah.cecs.csulb.edu/CECS476/homework_pdfs/assignment13.pdf
 http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment14.pdf
 http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/ftp.pdf
 
+week 8 links:
+
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment15.pdf
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/package_management.pdf
+
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/install.pdf
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment16.pdf
+
+week 10 links:
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/dns.pdf
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment17.pdf
+
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment18.pdf
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/www.pdf
+
+week 11 links:
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/security.pdf
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/iptables.pdf
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment19.pdf
+
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/haproxy.pdf
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment20.pdf
+
+week 12 links:
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/containers.pdf
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment21.pdf
+
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment22.pdf
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/nfs.pdf
+
+week 13 links:
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/nis.pdf
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment23.pdf
+
+http://cheetah.cecs.csulb.edu/CECS476/lecture_pdfs/quota.pdf
+http://cheetah.cecs.csulb.edu/CECS476/homework_pdfs/assignment24.pdf
